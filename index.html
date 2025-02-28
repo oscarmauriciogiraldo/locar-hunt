@@ -5,9 +5,57 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello World</title>
+
+    <!-- Import librerias -->
+    <!--  A-Frame and AR.js -->
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/locar-js"></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+
+    <a-scene
+      vr-mode-ui="enabled: false"
+      embedded
+      arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false"
+    >
+      <a-assets>
+        <a-assets-item
+          id="cofre"
+          src="assets/cofre_zelda/scene.gltf"
+        ></a-assets-item>
+      </a-assets>
+      <a-entity
+        id="tesoro"
+        gltf-model="#cofre"
+        scale="0.02 0.02 0.02"
+        position="0 -2 -3"
+        rotation="30 0 0"
+        animation-mixer
+        gps-entity-place="latitude: 4.8234496; longitude: -75.7137408;"
+      ></a-entity>
+      <a-camera gps-camera rotation-reader></a-camera>
+    </a-scene>
+
+    <button id="collect-btn">Recoger Cofre</button>
+    <script>
+      window.onload = () => {
+        if (!navigator.geolocation) {
+          alert("Geolocalización no soportada en este navegador.");
+          return;
+        }
+  
+        navigator.geolocation.watchPosition(
+          (position) => {
+            console.log("Ubicación obtenida:", position.coords);
+          },
+          (err) => {
+            console.error("Error obteniendo ubicación:", err);
+          },
+          { enableHighAccuracy: true }
+        );
+      };
+    </script>
   </body>
 </html>
+
+
