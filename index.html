@@ -24,12 +24,18 @@
 
       <!-- ******* Camera GPS ********* -->
       <!-- <a-camera gps-new-camera rotation-reader></a-camera> -->
+      <a-camera gps-new-camera='gpsMinDistance: 5'></a-camera>
       
       <a-assets>
         <a-assets-item
           id="cofre"
           src="assets/cofre_zelda/scene.gltf"
         ></a-assets-item>
+
+        <!-- <a-assets-item
+          id="nuevoObjeto"
+          src="assets/popmii/scene.gltf"
+        ></a-assets-item> -->
       </a-assets>
 
       
@@ -47,12 +53,22 @@
       <!-- Texto oculto que aparecerá al ganar -->
       <a-text
         id="ganaste-text"
-        value="¡Ganaste!"
-        position="-1 1 -5"
-        scale="2 2 2"
+        value="¡Congratulations!"
+        position="-5 2 -8"
+        scale="6 6 6"
         color="yellow"
         visible="false"
       ></a-text>
+
+      <!-- Animacion oculta, esta aparecera al momento de tocar el cofre -->
+      <!-- <a-entity
+        id="nuevoModelo"
+        gltf-model="#nuevoObjeto"
+        position="-1 1 -5"
+        scale="2 2 2"
+        visible="false"
+        animation-mixer
+      ></a-entity> -->
 
       
     </a-scene>
@@ -67,6 +83,7 @@
           let escalaInicial = el.getAttribute('scale');
 
           let textoGanaste = document.getElementById('ganaste-text');
+          //let nuevoModelo = document.getElementById('nuevoModelo');
 
           //Variable de control booleana
           let tesoroRecogido = false;
@@ -97,5 +114,6 @@
         }
       });
     </script>
+    <!-- <script src="./main.js"></script> -->
   </body>
 </html>

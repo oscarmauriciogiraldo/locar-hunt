@@ -1,60 +1,39 @@
-// 1. Configuración básica con Vite, A-Frame y LocAR.js
-import 'aframe';
-import LocAR from 'locar';
+import AFRAME from 'aframe'
+AFRAME.registerComponent('desaparecer-al-tocar', {
+    init: function () {
+      console.log('Objeto: cofre registrado')
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 2. Inicializar LocAR.js
-    const locAR = new LocAR({
-        onLocationUpdate: (coords) => {
-            console.log('Ubicación actual:', coords);
-            checkProximity(coords);
+      let el = this.el;
+      let escalaInicial = el.getAttribute('scale');
+
+      let textoGanaste = document.getElementById('ganaste-text');
+      //let nuevoModelo = document.getElementById('nuevoModelo');
+
+      //Variable de control booleana
+      let tesoroRecogido = false;
+
+      el.addEventListener('click', function () {
+        console.log('objeto tocado')
+
+        if (!this.tesoroRecogido) {
+          this.tesoroRecogido = true;
+          console.log("Tesoro recogido:", this.tesoroRecogido);
+
+          // Animación para reducir tamaño
+          el.setAttribute('animation', {
+            property: 'scale',
+            to: '0 0 0',
+            dur: 1000,
+            easing: 'easeOutQuad'
+          });
+
+          // Desactivar el objeto y mostrar el texto
+          setTimeout(() => {
+            el.setAttribute('visible', false);
+            textoGanaste.setAttribute('visible', true);
+          }, 1000);
         }
-    });
-    
-    locAR.start();
-    
-    // 3. Simulación de API con datos mockeados
-    const mockApiResponse = {
-        uid: '1234',
-        location: { latitude: 40.7128, longitude: -74.0060 } // Ejemplo (Nueva York)
-    };
-    const targetLocation = mockApiResponse.location;
-    
-    function checkProximity(coords) {
-        const distance = getDistance(coords, targetLocation);
-        if (distance < 10) { // Si el usuario está a menos de 10m
-            document.getElementById('interaction-btn').style.display = 'block';
-        }
+
+      });
     }
-    
-    function getDistance(coord1, coord2) {
-        const R = 6371e3;
-        const lat1 = coord1.latitude * Math.PI / 180;
-        const lat2 = coord2.latitude * Math.PI / 180;
-        const deltaLat = (coord2.latitude - coord1.latitude) * Math.PI / 180;
-        const deltaLon = (coord2.longitude - coord1.longitude) * Math.PI / 180;
-        
-        const a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
-                  Math.cos(lat1) * Math.cos(lat2) *
-                  Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return R * c;
-    }
-    
-    // 4. Manejo de interacción
-    let objectCollected = false;
-    document.getElementById('interaction-btn').addEventListener('click', () => {
-        objectCollected = true;
-        console.log('Objeto recogido:', objectCollected);
-    });
-    
-    // 5. Configuración de A-Frame
-    /* const scene = document.createElement('a-scene');
-    scene.innerHTML = `
-      <a-assets>
-        <a-assets-item id="cofre" src="assets/cofre_zelda/scene.gltf"></a-assets-item>
-      </a-assets>
-      <a-entity id="tesoro" gltf-model="#cofre" scale="0.02 0.02 0.02" position="0 -2 -3" rotation="30 0 0" animation-mixer></a-entity>
-    `;
-    document.body.appendChild(scene); */
-});
+  });
