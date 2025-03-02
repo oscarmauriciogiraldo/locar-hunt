@@ -3,7 +3,9 @@
 En este proyecto se implementa la RA desde la web.
 
 ## Introduccion
-
+Existen diversas aplicaciones para RA, o Realidad Aumentada, existen aplicaciones moviles para ver inmubles en nuestros hogares y ver el tipo de mueble que se adecue mas a nuestras necesidades o gustos. De este modo hay diversas aplicaciones para la Realidad Aumentada, desarrolladas en diferentes lenguajes o plataformas. 
+Tambien existen implementaciones de la Realidad Aumentada y Realidad Virtual para la web.
+AR.js es una biblioteca liviana para Realidad Aumentada en la Web, que incluye funciones como seguimiento de imágenes, RA basada en ubicación y seguimiento de marcadores.
 "AR.js V2 introdujo la realidad aumentada basada en la ubicacion en la web. Esto permite nuevas experiencias en la realidad aumentada".
 
 
