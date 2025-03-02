@@ -3,15 +3,57 @@
   <head>
     <!-- *********************** Libraries VR A-Aframe ************************ -->
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+
     <!-- **************** Librari AR.js A-Frame components ******************* -->
     <!-- <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js'></script> -->
     
     <!-- *********** library for Animation mixer ***********  -->
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@v7.5.0/dist/aframe-extras.loaders.min.js"></script>
 
+   
+
   </head>
   <body>
-    <a-scene>
+    <script>
+      AFRAME.registerComponent('desaparecer-al-tocar', {
+        init: function () {
+          console.log('Objeto: cofre registrado')
+
+          let el = this.el;
+          let escalaInicial = el.getAttribute('scale');
+
+          let textoGanaste = document.getElementById('ganaste-text');
+
+          //Variable de control booleana
+          let tesoroRecogido = false;
+
+          el.addEventListener('click', function () {
+            console.log('objeto tocado')
+
+            if (!this.tesoroRecogido) {
+              this.tesoroRecogido = true;
+              console.log("Tesoro recogido:", this.tesoroRecogido);
+  
+              // Animación para reducir tamaño
+              el.setAttribute('animation', {
+                property: 'scale',
+                to: '0 0 0',
+                dur: 1000,
+                easing: 'easeOutQuad'
+              });
+  
+              // Desactivar el objeto y mostrar el texto
+              setTimeout(() => {
+                el.setAttribute('visible', false);
+                textoGanaste.setAttribute('visible', true);
+              }, 1000);
+            }
+
+          });
+        }
+      });
+    </script>
+    <a-scene cursor="rayOrigin: mouse">
       
       <a-assets>
         <a-assets-item
@@ -19,6 +61,9 @@
           src="assets/cofre_zelda/scene.gltf"
         ></a-assets-item>
       </a-assets>
+
+      
+
       <a-entity
         id="tesoro"
         gltf-model="#cofre"
@@ -26,8 +71,18 @@
         position="0 -2 -8"
         rotation="30 0 0"
         animation-mixer
-        
+        desaparecer-al-tocar
       ></a-entity>
+
+      <!-- Texto oculto que aparecerá al ganar -->
+      <a-text
+        id="ganaste-text"
+        value="¡Ganaste!"
+        position="-1 1 -5"
+        scale="2 2 2"
+        color="yellow"
+        visible="false"
+      ></a-text>
       <!-- <a-camera gps-new-camera rotation-reader></a-camera> -->
     </a-scene>
 
