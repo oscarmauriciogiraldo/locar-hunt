@@ -15,7 +15,15 @@
   </head>
   <body>
     
-    <a-scene cursor="rayOrigin: mouse">
+    <a-scene 
+      cursor="rayOrigin: mouse"
+      vr-mode-ui="enabled: false"
+      arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false'
+      renderer="antialias: true; alpha: true"
+    >
+
+      <!-- ******* Camera GPS ********* -->
+      <!-- <a-camera gps-new-camera rotation-reader></a-camera> -->
       
       <a-assets>
         <a-assets-item
@@ -45,7 +53,8 @@
         color="yellow"
         visible="false"
       ></a-text>
-      <!-- <a-camera gps-new-camera rotation-reader></a-camera> -->
+
+      
     </a-scene>
 
     <!-- *********************** Scripts and functions *************************-->
