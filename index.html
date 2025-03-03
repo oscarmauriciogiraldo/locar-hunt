@@ -27,31 +27,6 @@
       <!-- <a-camera gps-new-camera rotation-reader></a-camera> -->
       <a-camera gps-new-camera='gpsMinDistance: 5' rotation-reader></a-camera>
       
-      <a-assets>
-        <a-assets-item
-          id="cofre"
-          src="assets/cofre_zelda/scene.gltf"
-        ></a-assets-item>
-
-        <!-- <a-assets-item
-          id="nuevoObjeto"
-          src="assets/popmii/scene.gltf"
-        ></a-assets-item> -->
-      </a-assets>
-
-      
-
-      <a-entity
-        id="tesoro"
-        gltf-model="#cofre"
-        scale="0.04 0.04 0.04"
-        position="0 -2 -8"
-        rotation="30 0 0"
-        animation-mixer
-        desaparecer-al-tocar
-        gps-new-entity-place="latitude: 4.8011218; longitude: -75.8109575"
-      ></a-entity>
-      
 
       <!-- Texto oculto que aparecerá al ganar -->
       <a-text
@@ -61,18 +36,10 @@
         scale="6 6 6"
         color="yellow"
         visible="false"
-        gps-new-entity-place="latitude: 4.8011218; longitude: -75.8109575"
+        Location: gps-new-entity-place="latitude: 4.8029617; longitude: -75.73424"
       ></a-text>
 
-      <!-- Animacion oculta, esta aparecera al momento de tocar el cofre -->
-      <!-- <a-entity
-        id="nuevoModelo"
-        gltf-model="#nuevoObjeto"
-        position="-1 1 -5"
-        scale="2 2 2"
-        visible="false"
-        animation-mixer
-      ></a-entity> -->
+      
 
       
     </a-scene>
@@ -90,13 +57,14 @@
           //let nuevoModelo = document.getElementById('nuevoModelo');
 
           //Variable de control booleana
-          let tesoroRecogido = false;
+          let tesoroRecogido = 'NoCapturado';
 
           el.addEventListener('click', function () {
             console.log('objeto tocado')
+            alert('Pista Capturada')
 
             if (!this.tesoroRecogido) {
-              this.tesoroRecogido = true;
+              this.tesoroRecogido = 'Capturado';
               console.log("Tesoro recogido:", this.tesoroRecogido);
   
               // Animación para reducir tamaño
