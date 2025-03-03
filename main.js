@@ -38,11 +38,11 @@ window.onload = () => {
 
             /*  ***** */
             const entity2 = document.createElement('a-entity')
-            entity2.setAttribute('id', 'objeto-capturado');
+            //entity2.setAttribute('id', 'objeto-capturado');
             entity2.setAttribute("scale", {
-                x: 0.50, 
-                y: 0.50,
-                z: 0.50
+                x: 10, 
+                y: 10,
+                z: 10
             });
             entity2.setAttribute('position', {
                 x: 0,
@@ -58,6 +58,10 @@ window.onload = () => {
                 /* latitude: mockData.latitude + 0.001,
                 longitude: mockData.longitude */
             });
+
+            setTimeout(() => {
+                entity2.setAttribute('visible', true);
+            }, 1000);
         }
         testEntityAdded = true;
     });
