@@ -27,4 +27,11 @@ En este momento se abre la aplicacion pidiendo permisos de ubicacion y uso de ca
 
 ## Notas y/o Consideraciones.
 
+### Datos de Prueba:
+
+    #### Coordenadas:
+    - Coordenadas Casa Oscar: casa: gps-new-entity-place="latitude: 4.8029365; longitude: -75.7342656"
+    
+    - Coordenadas Oficina ukumary Gina: gps-new-entity-place="latitude: 4.8011218; longitude: -75.8109575"
+    
     
