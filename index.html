@@ -43,7 +43,7 @@
           //Variable de control booleana
           let tesoroRecogido = 'NoCapturado';
 
-          el.addEventListener('click', function () {
+          el.addEventListener('click', async function () {
             console.log('objeto tocado')
             alert('Pista Capturada')
 
@@ -64,6 +64,24 @@
                 el.setAttribute('visible', false);
                 textoGanaste.setAttribute('visible', true);
               }, 1000);
+
+              // Enviar datos al servidor
+              const postData = {
+                user: getQueryParams().userId,
+                uuid: getQueryParams().uuid
+              };
+          
+              try {
+                  const response = await fetch('https://itssoluciones.co/cda/controller/categoria.php?op=CatchPoint', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(postData)
+                  });
+                  const result = await response.json();
+                  console.log("Respuesta del servidor:", result);
+              } catch (error) {
+                  console.error("Error al enviar datos al servidor", error);
+              }
             }
 
           });
