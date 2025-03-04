@@ -43,13 +43,14 @@
           //Variable de control booleana
           let tesoroRecogido = 'NoCapturado';
 
-          el.addEventListener('click', function () {
+          el.addEventListener('click', async function () {
             console.log('objeto tocado')
             alert('Pista Capturada')
 
             if (!this.tesoroRecogido) {
               this.tesoroRecogido = 'Capturado';
-              console.log("Tesoro recogido:", this.tesoroRecogido);
+              //console.log("Tesoro recogido:", this.tesoroRecogido);
+              alert("Tesoro recogido:", this.tesoroRecogido);
   
               // Animación para reducir tamaño
               el.setAttribute('animation', {
@@ -58,6 +59,8 @@
                 dur: 1000,
                 easing: 'easeOutQuad'
               });
+
+              
   
               // Desactivar el objeto y mostrar el texto
               setTimeout(() => {
