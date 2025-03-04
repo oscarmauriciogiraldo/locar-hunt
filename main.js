@@ -1,3 +1,5 @@
+import { fetchMockData } from "./api.js";
+
 window.onload = () => {
     let testEntityAdded = false;
 
@@ -12,56 +14,52 @@ window.onload = () => {
                 longitude: e.detail.position.longitude,
             }; */
             /* Add a model to the nort of the initial GPS position */
-            const entity = document.createElement('a-entity')
+            const cofre = document.createElement('a-entity')
             /* Atributos modelo */
-            entity.setAttribute("scale", {
+            cofre.setAttribute("scale", {
                 x: 0.50, 
                 y: 0.50,
                 z: 0.50
             });
-            entity.setAttribute('position', {
+            cofre.setAttribute('position', {
                 x: 0,
                 y: -2,
                 z: -8
             });
-            entity.setAttribute('gltf-model', './assets/cofre_zelda/scene.gltf');
-            entity.setAttribute('rotation', '40 0 0');
-            entity.setAttribute('animation-mixer', '');
-            entity.setAttribute('desaparecer-al-tocar', '');
-            entity.setAttribute('gps-new-entity-place', {
+            cofre.setAttribute('gltf-model', './assets/cofre_zelda/scene.gltf');
+            cofre.setAttribute('rotation', '40 0 0');
+            cofre.setAttribute('animation-mixer', '');
+            cofre.setAttribute('desaparecer-al-tocar', '');
+            cofre.setAttribute('gps-new-entity-place', {
                 latitude: e.detail.position.latitude + 0.001,
                 longitude: e.detail.position.longitude
                 /* latitude: mockData.latitude + 0.001,
                 longitude: mockData.longitude */
             });
-            document.querySelector("a-scene").appendChild(entity);
+            document.querySelector("a-scene").appendChild(cofre);
 
-            /*  ***** */
-            const entity2 = document.createElement('a-entity')
-            //entity2.setAttribute('id', 'objeto-capturado');
-            entity2.setAttribute("scale", {
-                x: 10, 
-                y: 10,
-                z: 10
+            /*  ***** segundo modelo ******* */
+            const congratulations = document.createElement('a-entity')
+            congratulations.setAttribute('id', 'objeto-capturado');
+            congratulations.setAttribute("scale", {
+                x: 0.90, 
+                y: 0.90,
+                z: 0.90
             });
-            entity2.setAttribute('position', {
+            congratulations.setAttribute('position', {
                 x: 0,
-                y: -2,
+                y: -10,
                 z: -8
             });
-            entity2.setAttribute('gltf-model', './assets/popmii/scene.gltf');
-            entity2.setAttribute('animation-mixer', '');
-            entity2.setAttribute('visible', false);
-            entity2.setAttribute('gps-new-entity-place', {
+            congratulations.setAttribute('gltf-model', './assets/popmii/scene.gltf');
+            congratulations.setAttribute('animation-mixer', '');
+            congratulations.setAttribute('visible', false);
+            congratulations.setAttribute('gps-new-entity-place', {
                 latitude: e.detail.position.latitude + 0.001,
                 longitude: e.detail.position.longitude
-                /* latitude: mockData.latitude + 0.001,
-                longitude: mockData.longitude */
+                
             });
-
-            setTimeout(() => {
-                entity2.setAttribute('visible', true);
-            }, 1000);
+            document.querySelector("a-scene").appendChild(congratulations);
         }
         testEntityAdded = true;
     });
