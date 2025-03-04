@@ -1,18 +1,30 @@
-import { fetchMockData } from "./api.js";
-
-window.onload = () => {
+window.onload = async () => {
     let testEntityAdded = false;
+
+    // Simulación de API (Mock)
+    const fetchMockData = async () => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({
+                    userId: 1,
+                    /* Coordenadas simuladas Casa Oscar */
+                    latitude: 4.8029365, 
+                    longitude: -75.7342656 
+                });
+            }, 1000);
+        });
+    };
+
+    const data = await fetchMockData();
+    console.log("Datos mockeados recibidos:", data);
 
     const el = document.querySelector("[gps-new-camera]");
 
     el.addEventListener("gps-camera-update-position", e => {
         if(!testEntityAdded) {
-            alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
-           /*  const mockData = {
-                userId,
-                latitude: e.detail.position.latitude, 
-                longitude: e.detail.position.longitude,
-            }; */
+            //alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
+            alert(`Got first GPS position: lon ${data.longitude} lat ${data.latitude}`);
+           
             /* Add a model to the nort of the initial GPS position */
             const cofre = document.createElement('a-entity')
             /* Atributos modelo */
@@ -31,10 +43,11 @@ window.onload = () => {
             cofre.setAttribute('animation-mixer', '');
             cofre.setAttribute('desaparecer-al-tocar', '');
             cofre.setAttribute('gps-new-entity-place', {
-                latitude: e.detail.position.latitude + 0.001,
-                longitude: e.detail.position.longitude
-                /* latitude: mockData.latitude + 0.001,
-                longitude: mockData.longitude */
+                /* Calcula la ubicacion y pone el modelo en estas coordenadas */
+                /* latitude: e.detail.position.latitude + 0.001,
+                longitude: e.detail.position.longitude */
+                latitude: data.latitude + 0.001,
+                longitude: data.longitude
             });
             document.querySelector("a-scene").appendChild(cofre);
 
