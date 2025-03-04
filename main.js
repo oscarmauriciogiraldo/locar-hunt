@@ -2,21 +2,50 @@ window.onload = async () => {
     let testEntityAdded = false;
 
     // Simulación de API (Mock)
-    const fetchMockData = async () => {
+    /* const fetchMockData = async () => {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve({
                     userId: 1,
-                    /* Coordenadas simuladas Casa Oscar */
+                   //Coordenadas simuladas Casa Oscar
                     latitude: 4.8029365, 
                     longitude: -75.7342656 
                 });
             }, 1000);
         });
+    }; */
+
+    // Obtener parámetros desde la URL
+    const getQueryParams = () => {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            user: params.get("usr"),
+            userId: params.get("uuid"),
+            lat: params.get("lat"),
+            lng: params.get("lng")
+        };
     };
 
-    const data = await fetchMockData();
-    console.log("Datos mockeados recibidos:", data);
+    const params = getQueryParams();
+    console.log("Parámetros recibidos de la URL:", params);
+
+    /* const data = await fetchMockData();
+    console.log("Datos mockeados recibidos:", data); */
+
+    // Fetch de API 
+    const fetchApiData = async () => {
+        try {
+            const response = await fetch(`https://itssoluciones.co/tesoro/?lat=${params.lat}/&lng=${params.lng}/&usr=${params.user}/&uuid=${params.userId}`);
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error al obtener datos de la API:", error);
+            return null;
+        }
+    };
+
+    const data = await fetchApiData();
+    if (!data) return;
 
     const el = document.querySelector("[gps-new-camera]");
 
