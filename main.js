@@ -7,11 +7,11 @@ window.onload = async () => {
             setTimeout(() => {
                 resolve({
                     userId: 1,
-<<<<<<< HEAD
-                    /* Coordenadas simuladas Casa Oscar */
-=======
                    //Coordenadas simuladas Casa Oscar
+                    latitude: 4.8029365, 
+                    longitude: -75.7342656 
                 });
+            }, 1000);
         });
     }; */
 
