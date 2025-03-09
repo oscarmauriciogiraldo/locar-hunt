@@ -1,21 +1,8 @@
 window.onload = async () => {
     let testEntityAdded = false;
 
-    // Simulación de API (Mock)
-    /* const fetchMockData = async () => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve({
-                    userId: 1,
-                    /* Coordenadas simuladas Casa Oscar 
-                    latitude: 4.8029365, 
-                    longitude: -75.7342656 
-                });
-            }, 1000);
-        });
-    }; */
-
     /* ####### mock parametros recibidos URL ######## */
+    /* funcion para obtener parametros desde la URL */
     const urlParams = new URLSearchParams(window.location.search)
     console.log('1. Datos del url params: ', urlParams)
     /* Prueba mock url */
@@ -23,14 +10,12 @@ window.onload = async () => {
     /* Prueba phone: https://6qt78s9s-5173.use2.devtunnels.ms/?lat=4.8029365/&lng=-75.7342656/&usr=dzWnzQ4fkQnVPJj2UfEt/&uuid=2ece92d1a7e54dd3b5a2dc2620afd6af */
     /* Api Real: https://itssoluciones.co/tesoro/?lat=4.8029365/&lng=-75.7342656/&usr=dzWnzQ4fkQnVPJj2UfEt/&uuid=2ece92d1a7e54dd3b5a2dc2620afd6af */
 
-    //const data = await fetchMockData();
-    //console.log("Datos mockeados recibidos:", data);
     const user = urlParams.get("usr");
     const userId = urlParams.get("uuid") || "1234";
     const latitude = parseFloat(urlParams.get("lat")) || 4.8029365; // Coordenada mockeada ubicacion casa
     const longitude = parseFloat(urlParams.get("lng")) || -75.7342656; // Coordenada mockeada ubicacion casa
 
-    console.log(`2. Datos recibidos del api mockeada:  Usuario: ${user}, ID: ${userId}, Latitud: ${latitude}, Longitud: ${longitude}`);
+    console.log(`2. Datos recibidos del api mockeada:  Usuario: ${user}, User-ID: ${userId}, Latitud: ${latitude}, Longitud: ${longitude}`);
     /* ####### mock parametros recibidos URL ######## */
     
 
