@@ -19,16 +19,16 @@ window.onload = async () => {
     const urlParams = new URLSearchParams(window.location.search)
     console.log('1. Datos del url params: ', urlParams)
     /* Prueba mock url */
-    /* http://localhost:5173/?user=Juan&user-Id=4567&Latitud=37.7749&Longitud=-122.4194 */
-
+    /* http://localhost:5173/?lat=4.8029365/&lng=-75.7342656/&usr=dzWnzQ4fkQnVPJj2UfEt/&uuid=2ece92d1a7e54dd3b5a2dc2620afd6af */
+    /* Prueba phone: https://6qt78s9s-5173.use2.devtunnels.ms/?lat=4.8029365/&lng=-75.7342656/&usr=dzWnzQ4fkQnVPJj2UfEt/&uuid=2ece92d1a7e54dd3b5a2dc2620afd6af */
     /* Api Real: https://itssoluciones.co/tesoro/?lat=4.8029365/&lng=-75.7342656/&usr=dzWnzQ4fkQnVPJj2UfEt/&uuid=2ece92d1a7e54dd3b5a2dc2620afd6af */
 
     //const data = await fetchMockData();
     //console.log("Datos mockeados recibidos:", data);
-    const user = urlParams.get("usr") || "mockUser";
-    const userId = urlParams.get("user-Id") || "1234";
-    const latitude = parseFloat(urlParams.get("Latitud")) || 4.8029365; // Coordenada mockeada ubicacion casa
-    const longitude = parseFloat(urlParams.get("Longitud")) || -75.7342656; // Coordenada mockeada ubicacion casa
+    const user = urlParams.get("usr");
+    const userId = urlParams.get("uuid") || "1234";
+    const latitude = parseFloat(urlParams.get("lat")) || 4.8029365; // Coordenada mockeada ubicacion casa
+    const longitude = parseFloat(urlParams.get("lng")) || -75.7342656; // Coordenada mockeada ubicacion casa
 
     console.log(`2. Datos recibidos del api mockeada:  Usuario: ${user}, ID: ${userId}, Latitud: ${latitude}, Longitud: ${longitude}`);
     /* ####### mock parametros recibidos URL ######## */
@@ -39,7 +39,7 @@ window.onload = async () => {
     el.addEventListener("gps-camera-update-position", e => {
         if(!testEntityAdded) {
             //alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
-            alert(`3. Ubicacion recibida por parametros: lon ${longitude} lat ${latitude}`);
+            alert(`3. Ubicacion recibida por parametros: lon ${longitude} lat ${latitude} for user ${user}`);
            
             /* Add a model to the nort of the initial GPS position */
             const cofre = document.createElement('a-entity')

@@ -12,7 +12,6 @@
     "vite": "^5.2.0"
   },
   "dependencies": {
-    "aframe": "^1.7.0",
     "locar": "^0.0.6",
     "three": "^0.173.0"
   }
