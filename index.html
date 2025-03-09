@@ -11,6 +11,7 @@
     <!-- *********** library for Animation mixer ***********  -->
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@v7.5.0/dist/aframe-extras.loaders.min.js"></script>
 
+    <script type="module" src="/main.js"></script>
    
 
   </head>
@@ -49,7 +50,8 @@
 
             if (!this.tesoroRecogido) {
               this.tesoroRecogido = 'Capturado';
-              console.log("Tesoro recogido:", this.tesoroRecogido);
+              //console.log("Tesoro recogido:", this.tesoroRecogido);
+              alert("Tesoro recogido:", this.tesoroRecogido);
   
               // Animación para reducir tamaño
               el.setAttribute('animation', {
@@ -58,6 +60,8 @@
                 dur: 1000,
                 easing: 'easeOutQuad'
               });
+
+              
   
               // Desactivar el objeto y mostrar el texto
               setTimeout(() => {
@@ -88,6 +92,5 @@
         }
       });
     </script>
-    <script type="module" src="/main.js"></script>
   </body>
 </html>
